@@ -15,12 +15,9 @@ print("Opened database successfully")
 # conn.close()
 
 # 3 insert values into table name COMPANY
-value = "32"
+value = "50"
 conn.execute(f"INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY) \
-      VALUES (1, 'Paul', {value}, 'California', 123.00 )")
-
-conn.execute("INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY) \
-      VALUES (2, 'Allen', 25, 'Texas', 15000.00 )")
+      VALUES (3, 'hello', {value}, 'natri', 1300 )")
 
 conn.commit()
 print("Records created successfully")

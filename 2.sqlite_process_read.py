@@ -11,17 +11,13 @@ def query_data(process_id, db_name, table_name):
     cursor = conn.cursor()
     # Print the process id
     print(f"Process {process_id} is querying data from {db_name}.{table_name}")
-    # Execute a query to select some records from the table
-    cursor.execute(f"SELECT * FROM {table_name} LIMIT 10")
+    # Giả sử bạn muốn lấy dòng có id là 10
+    id = process_id
+    cursor.execute(f"SELECT * FROM {table_name} WHERE ID = {id}")
     # Fetch the results
     results = cursor.fetchall()
-    # Print the results
-    for row in results:
-        print(row)
-    print("results", results[process_id-1])
-    # Close the connection
     conn.close()
-    return results[process_id-1]
+    return results
 
 
 # Define the number of processes
@@ -38,6 +34,7 @@ if __name__ == '__main__':
             process_ids = list(range(1, num_processes + 1))
             for process_id in process_ids:
                 result = pool.apply_async(query_data, (process_id, db_name, table_name))
-                print("----", result.get(timeout=1))
+                print(f"round {n}", result.get(timeout=1))
+            print("\n")
         if n == 2:
             break
